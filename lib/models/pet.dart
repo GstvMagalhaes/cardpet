@@ -7,9 +7,10 @@ class Pet {
   String nome;
   String tipo;
   Color? cor;
-  List<Vacinas> vacinas =[];
-  Pet({required this.foto, required this.nome, required this.tipo});
-
+  List<Vacinas> vacinas = [];
+  Pet({
+    required this.foto,
+    required this.nome,
+    required this.tipo,
+  });
 }
-
-

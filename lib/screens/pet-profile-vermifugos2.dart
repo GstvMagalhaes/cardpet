@@ -28,7 +28,12 @@ class _MyPetProfileSignUpState extends State<PetProfileVermifugo2> {
       body: Stack(
         children: <Widget>[
           Container(
-            color: Color.fromARGB(255, 245, 114, 114,),
+            color: Color.fromARGB(
+              255,
+              245,
+              114,
+              114,
+            ),
             child: SizedBox(
               width: 550,
               height: 300,
@@ -40,7 +45,8 @@ class _MyPetProfileSignUpState extends State<PetProfileVermifugo2> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PetSignUp( //<--- PetSignUp
+                        builder: (context) => PetSignUp(
+                          //<--- PetSignUp
                           title: '',
                         ),
                       ),
@@ -61,7 +67,10 @@ class _MyPetProfileSignUpState extends State<PetProfileVermifugo2> {
                   ),
                 ));
               },
-              icon: Icon(Icons.more_vert, color: Colors.white,),
+              icon: Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
               itemBuilder: (context) => [
                 PopupMenuItem(
                   child: Text('Vacinas'),
@@ -119,12 +128,12 @@ class _MyPetProfileSignUpState extends State<PetProfileVermifugo2> {
           Padding(
             padding: const EdgeInsets.only(left: 135.0, top: 45),
             child: Text(
-                  'Vermífugos',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 27,
-                      color: Color.fromARGB(255, 255, 255, 255)),
-                ),
+              'Vermífugos',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 27,
+                  color: Color.fromARGB(255, 255, 255, 255)),
+            ),
           ),
           /*
           Padding(
@@ -490,7 +499,7 @@ class _MyPetProfileSignUpState extends State<PetProfileVermifugo2> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 625.0, right: 42, left: 250),
+            padding: const EdgeInsets.only(top: 625.0, right: 42, left: 240),
             child: SizedBox(
               height: 35,
               // width: 100,

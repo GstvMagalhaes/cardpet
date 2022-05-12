@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Wallet Pet',
+      title: 'Card Pet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.cyan),
       home: const SplashScreen(),
@@ -46,36 +46,14 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splash: Lottie.asset('assets/images/loading.json'),
-
-      // Column(
-      //   children: [
-      ///TODO Add your image under assets folder
-      //     Image.asset('assets/logo_icon.png'),
-      //     const Text('Cake app', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),)
-      //   ],
-      // ),
       backgroundColor: Color.fromARGB(255, 255, 156, 42),
       nextScreen: LoginPage(
         title: '',
       ),
       splashIconSize: 250,
-      duration: 6000,
+      duration: 4200,
       splashTransition: SplashTransition.fadeTransition,
       animationDuration: const Duration(seconds: 1),
     );
   }
 }
-
-// class Home extends StatelessWidget {
-//   const Home({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Home'),
-//         centerTitle: true,
-//       ),
-//     );
-//   }
-// }

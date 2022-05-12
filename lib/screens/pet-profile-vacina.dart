@@ -40,7 +40,8 @@ class _MyPetProfileSignUpState extends State<PetProfileVacina> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PetSignUp( //<--- PetSignUp
+                        builder: (context) => PetSignUp(
+                          //<--- PetSignUp
                           title: '',
                         ),
                       ),
@@ -61,7 +62,10 @@ class _MyPetProfileSignUpState extends State<PetProfileVacina> {
                   ),
                 ));
               },
-              icon: Icon(Icons.more_vert, color: Colors.white,),
+              icon: Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
               itemBuilder: (context) => [
                 PopupMenuItem(
                   child: Text('Vermífugos'),
@@ -117,14 +121,14 @@ class _MyPetProfileSignUpState extends State<PetProfileVacina> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 95.0, top: 45),
+            padding: const EdgeInsets.only(left: 80.0, top: 45),
             child: Text(
-                  'Carteirinha do PET',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 27,
-                      color: Color.fromARGB(255, 255, 255, 255)),
-                ),
+              'Carteirinha do PET',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 27,
+                  color: Color.fromARGB(255, 255, 255, 255)),
+            ),
           ),
           /*
           Padding(
@@ -490,7 +494,7 @@ class _MyPetProfileSignUpState extends State<PetProfileVacina> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 625.0, right: 42, left: 250),
+            padding: const EdgeInsets.only(top: 625.0, right: 42, left: 240),
             child: SizedBox(
               height: 35,
               // width: 100,
