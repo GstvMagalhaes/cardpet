@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "934472969302",
+    "project_id": "xcardpet",
+    "storage_bucket": "xcardpet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934472969302:android:486e182e8e8e3ffd4f5ff7",
+        "android_client_info": {
+          "package_name": "com.example.projeto_epsa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934472969302-bo56es26gcri5iog70qqj9je6i2mje22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBb9Qpyqcu7n84DmpXJeBJnV9j_ipXfeaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934472969302-bo56es26gcri5iog70qqj9je6i2mje22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
