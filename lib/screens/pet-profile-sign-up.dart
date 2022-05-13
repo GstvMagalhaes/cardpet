@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use
+import 'package:easy_actions/easy_actions.dart';
+
 import '../controllers/pet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,7 +15,6 @@ class PetProfileSignUp extends StatefulWidget {
 }
 
 class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
-
   var controller;
   @override
   void initState() {
@@ -22,14 +23,13 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
     controller = PetController();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
           Container(
-            color: Color.fromARGB(255, 255, 180, 82),
+            color: Colors.cyan,
             child: SizedBox(
               width: 550,
               height: 300,
@@ -57,7 +57,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: Color.fromARGB(255, 121, 235, 255),
+                color: Color.fromARGB(255, 253, 253, 253),
               ),
               child: SizedBox(
                 width: 550,
@@ -102,13 +102,13 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
                   end: Alignment.bottomRight,
                   stops: [0.3, 1.0],
                   colors: [
-                    Color.fromARGB(255, 255, 158, 73),
-                    Color.fromARGB(255, 255, 126, 13),
+                    Colors.cyan,
+                    Colors.cyan,
                   ],
                 ),
                 border: Border.all(
-                  width: 2.0,
-                  color: const Color(0xFFFFFFFF),
+                  width: 2,
+                  color: Color.fromARGB(255, 255, 255, 255),
                 ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(56),
@@ -118,7 +118,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
                 child: FlatButton(
                     child: Icon(
                       Icons.add,
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 255, 255, 255),
                       size: 20,
                     ),
                     onPressed: () {}
@@ -188,120 +188,56 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
               style: TextStyle(fontSize: 18),
             ),
           ),
-          // Center(
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(top: 60.0, right: 200),
-          //     child: FloatingActionButton.extended(
-          //       backgroundColor: Color.fromARGB(255, 16, 190, 0),
-          //       onPressed: () {},
-          //       icon: Icon(Icons.check),
-          //       label: Text("Cadastrar"),
-          //     ),
-          //   ),
-          // ),
           Padding(
-            padding: const EdgeInsets.only(top: 620.0, right: 200),
-            child: Center(
-              child: Container(
-                height: 50.0,
-                child: RaisedButton(
-                  onPressed: () {
-
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(255, 0, 156, 13),
-                            Color.fromARGB(255, 0, 209, 17)
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 150.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Cadastrar",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ),
-                    ),
+            padding: const EdgeInsets.only(top: 700.0, left: 30),
+            child: Row(
+              children: [
+                // BOTÃO DE CADASTRO DO PET
+                EasyOutlinedButton(
+                  height: 60,
+                  width: 150,
+                  label: 'Cadastrar',
+                  isRounded: true,
+                  icon: const Icon(
+                    Icons.check,
+                    size: 20,
+                    color: Color.fromARGB(255, 0, 255, 34),
                   ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 620.0, left: 200),
-            child: Center(
-              child: Container(
-                height: 50.0,
-                child: RaisedButton(
+                  isTrailingIcon: true,
+                  color: Colors.cyan,
+                  labelColor: Colors.cyan,
                   onPressed: () {},
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(255, 187, 1, 1),
-                            Color.fromARGB(255, 243, 0, 0)
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 150.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Cancelar",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40.0),
+                  child: EasyOutlinedButton(
+                    height: 60,
+                    width: 150,
+                    label: 'Cancelar',
+                    isRounded: true,
+                    icon: const Icon(
+                      Icons.block,
+                      size: 20,
+                      color: Colors.red,
                     ),
+                    isTrailingIcon: true,
+                    color: Colors.cyan,
+                    labelColor: Colors.cyan,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PetSignUp(
+                            title: '',
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
-              ),
+              ],
             ),
           ),
-
-          // Center(
-          //   child: FloatingActionButton.extended(
-          //     label: Text('Cadastrar'), // <-- Text
-          //     backgroundColor: Color.fromARGB(255, 56, 177, 0),
-          //     icon: Icon(
-          //       // <-- Icon
-          //       Icons.check,
-          //       size: 24.0,
-          //     ),
-          //     onPressed: () {},
-          //   ),
-          // ),
-          // Center(
-          //   child: FloatingActionButton.extended(
-          //     label: Text('Cancelar'), // <-- Text
-          //     backgroundColor: Color.fromARGB(255, 226, 0, 0),
-          //     icon: Icon(
-          //       // <-- Icon
-          //       Icons.block,
-          //       size: 24.0,
-          //     ),
-          //     onPressed: () {},
-          //   ),
-          // ),
         ],
       ),
     );

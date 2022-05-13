@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:projeto_epsa/fabwidgets/fabmenubutton.dart';
 import '../models/pet.dart';
 import '../repositories/pets_repository.dart';
 import 'pet-profile-vacina.dart';
@@ -142,6 +143,7 @@ class _PetPageState extends State<PetPage> {
               child: Padding(
                 padding: const EdgeInsets.all(175.0),
                 child: FloatingActionButton(
+                  heroTag: 'next2',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -159,77 +161,8 @@ class _PetPageState extends State<PetPage> {
             ),
           ],
         ),
+        // floatingActionButton: FabMenuButton(),
       ),
     );
-    //     floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    //     bottomNavigationBar: BottomAppBar(
-    //       shape: CircularNotchedRectangle(),
-    //       child: Container(
-    //         height: 75,
-    //         child: Row(
-    //           mainAxisSize: MainAxisSize.max,
-    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //           children: <Widget>[
-    //             IconButton(
-    //               iconSize: 30.0,
-    //               padding: EdgeInsets.only(left: 28.0),
-    //               icon: Icon(Icons.home),
-    //               onPressed: () {
-    //                 // setState(() {
-    //                 //   _myPage.jumpToPage(0);
-    //                 // });
-    //               },
-    //             ),
-    //             IconButton(
-    //               iconSize: 30.0,
-    //               padding: EdgeInsets.only(right: 28.0),
-    //               icon: Icon(Icons.edit),
-    //               onPressed: () {
-    //                 // setState(() {
-    //                 //   _myPage.jumpToPage(1);
-    //                 // });
-    //               },
-    //             ),
-    //             IconButton(
-    //               iconSize: 30.0,
-    //               padding: EdgeInsets.only(left: 28.0),
-    //               icon: Icon(Icons.notifications),
-    //               onPressed: () {
-    //                 // setState(() {
-    //                 //   _myPage.jumpToPage(2);
-    //                 // });
-    //               },
-    //             ),
-    //             IconButton(
-    //               iconSize: 30.0,
-    //               padding: EdgeInsets.only(right: 28.0),
-    //               icon: Icon(Icons.store_mall_directory),
-    //               onPressed: () {
-    //                 // setState(() {
-    //                 //   _myPage.jumpToPage(3);
-    //                 // });
-    //               },
-    //             )
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //     floatingActionButton: Container(
-    //       height: 65.0,
-    //       width: 65.0,
-    //       child: FittedBox(
-    //         child: FloatingActionButton(
-    //           backgroundColor: Colors.amber,
-    //           onPressed: () {},
-    //           child: Icon(
-    //             Icons.sports_esports,
-    //             color: Color.fromARGB(255, 255, 255, 255),
-    //           ),
-    //           // elevation: 5.0,
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }
