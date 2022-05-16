@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:projeto_epsa/fabwidgets/fabmenubutton.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../models/pet.dart';
 import '../repositories/pets_repository.dart';
 import 'pet-profile-vacina.dart';
@@ -161,7 +161,35 @@ class _PetPageState extends State<PetPage> {
             ),
           ],
         ),
-        // floatingActionButton: FabMenuButton(),
+        floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.menu_close,
+          children: [
+            SpeedDialChild(
+              child: Icon(
+                Icons.edit,
+                size: 28,
+              ),
+              label: 'Editar',
+              onTap: () {},
+            ),
+            SpeedDialChild(
+              child: Icon(
+                Icons.notifications,
+                size: 28,
+              ),
+              label: 'Notificações',
+              onTap: () {},
+            ),
+            SpeedDialChild(
+              child: Icon(
+                Icons.store,
+                size: 28,
+              ),
+              label: 'Pet Shops Parceiros',
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
