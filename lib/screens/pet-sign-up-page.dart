@@ -1,10 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'dart:async';
+import 'dart:html';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:projeto_epsa/models/pet.dart';
 import 'package:projeto_epsa/screens/pet_page.dart';
-import '../controllers/pet_controller.dart';
 
 import 'pet-profile-sign-up.dart';
 
@@ -15,15 +16,19 @@ class PetSignUp extends StatefulWidget {
   @override
   State<PetSignUp> createState() => _MyPetSignUpState();
 }
-
 class _MyPetSignUpState extends State<PetSignUp> {
-  //CONTROLADOR DAS TABELAS DOS PETS
-  var controller;
+
+  late List<Pet> items;
+  var db = FirebaseFirestore.instance;
+  late StreamSubscription<QuerySnapshot> petInscricao;
+  
+  // late StreamSubscription<QuerySnapshot> petInscricao = petInscricao;
+
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    controller = PetController();
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    petInscricao.cancel();
   }
 
   @override
@@ -88,57 +93,38 @@ class _MyPetSignUpState extends State<PetSignUp> {
                           ),
                         ),
                       ),
-                      visible: controller.tabela.isNotEmpty,
-                      child: ListView.separated(
-                        itemCount: controller.tabela.length,
-                        itemBuilder: (BuildContext context, int pet) {
-                          final List<Pet> tabela = controller.tabela;
-                          return ListTile(
-                            leading: CircleAvatar(
-                              radius: 20,
-                              backgroundImage: NetworkImage(tabela[pet].foto),
-                            ), //Image.network(tabela[i].foto),
-                            title: Text(tabela[pet].nome),
-                            trailing: Text(tabela[pet].tipo),
+                      // visible: controller.tabela.isNotEmpty,
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: db.collection("pets").snapshots(),
 
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => PetPage(
-                                    key: Key(tabela[pet].nome),
-                                    pet: tabela[pet],
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        separatorBuilder: (_, __) => Divider(),
-                        padding: EdgeInsets.all(16),
-                      ),
+                        builder: (context, snapshot) {
+                          print(snapshot.data);
+                          // items = snapshot.data!.docs.map((documentSnapshot) => Pet.fromMap(documentSnapshot.data(), documentSnapshot.id),).toList();
+                          // return Container();
+                          return ListView.builder(
+                                  itemCount: snapshot.data!.docs.length,
+                                  itemBuilder: (context, index){
+                                    return ListTile(
+                                      title: Text(snapshot.data!.docs[index]['nome']),
+                                      subtitle: Text(snapshot.data!.docs[index]['raca']),
+                                      leading: Column(
+                                        children: [
+                                          IconButton(
+                                            icon: Icon(Icons.delete_forever),
+                                            onPressed: (){
+                                               db.collection("pets").doc(snapshot.data!.docs[index].id).delete();
+                                            },
+                                             
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                        }
+                      )
+                        
                     ),
-
-                    // Center(
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(top: 300.0),
-                    //     child: FloatingActionButton(
-                    //       heroTag: 'next1',
-                    //       onPressed: () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) => PetProfileSignUp(
-                    //               title: '',
-                    //             ),
-                    //           ),
-                    //         );
-                    //       },
-                    //       child: Icon(Icons.add),
-                    //       backgroundColor: Color.fromARGB(255, 255, 209, 60),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
                 decoration: BoxDecoration(
@@ -228,5 +214,15 @@ class _MyPetSignUpState extends State<PetSignUp> {
         ),
       ),
     );
-  }
+
+    
 }
+
+
+
+
+}
+
+
+  
+  

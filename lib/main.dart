@@ -3,6 +3,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lottie/lottie.dart';
+import 'package:projeto_epsa/screens/pet_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_epsa/screens/pet-profile-sign-up.dart';

@@ -1,15 +1,16 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:projeto_epsa/models/vacinas.dart';
 import '../models/pet.dart';
-import '../repositories/pets_repository.dart';
 import 'pet-profile-vacina.dart';
 import 'pet-sign-up-page.dart';
 
 class PetPage extends StatefulWidget {
-  Pet pet;
-  PetPage({Key? key, required this.pet}) : super(key: key);
+  
+  // PetPage({Key? key, required this.pet}) : super(key: key);
+
+  late List<Vacinas> vacinas;
 
   @override
   State<PetPage> createState() => _PetPageState();
@@ -22,12 +23,11 @@ class _PetPageState extends State<PetPage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: widget.pet.cor,
+          backgroundColor: Colors.blue,
           title: Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 60.0, top: 10),
-              child: Text(
-                widget.pet.nome,
+              child: Text( "ok",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 23,
@@ -59,7 +59,7 @@ class _PetPageState extends State<PetPage> {
                       padding: EdgeInsets.all(24),
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: NetworkImage(widget.pet.foto),
+                        backgroundImage: NetworkImage(""),
                       ),
                     ),
                     Column(
@@ -67,7 +67,7 @@ class _PetPageState extends State<PetPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, bottom: 15),
                           child: Text(
-                            'Nome: ' '${widget.pet.nome}',
+                            'Nome: ' '',
                             style: TextStyle(
                               fontWeight: FontWeight.w300,
                               color: Colors.black,
@@ -76,7 +76,7 @@ class _PetPageState extends State<PetPage> {
                           ),
                         ),
                         Text(
-                          'Tipo: ' '${widget.pet.tipo}',
+                          'Tipo: ' '${"widget.pet.tipo"}',
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             color: Colors.black,

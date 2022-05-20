@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_actions/easy_actions.dart';
-
-import '../controllers/pet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'pet-sign-up-page.dart';
@@ -15,12 +14,17 @@ class PetProfileSignUp extends StatefulWidget {
 }
 
 class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
-  var controller;
+  var db = FirebaseFirestore.instance;
+
+  final controllerNome = TextEditingController();
+  final controllerData = TextEditingController();
+  final controllerRaca = TextEditingController();
+  final controllerPelagem = TextEditingController();
+  final controllerPeso = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller = PetController();
   }
 
   @override
@@ -66,6 +70,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
                   padding: const EdgeInsets.only(
                       top: 100, right: 30, left: 30, bottom: 50),
                   child: TextFormField(
+                    controller: controllerNome,
                     // autofocus: true,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
@@ -130,6 +135,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
           Padding(
             padding: const EdgeInsets.only(top: 360.0, left: 30, right: 30),
             child: TextFormField(
+              controller: controllerData,
               keyboardType: TextInputType.datetime,
               decoration: InputDecoration(
                 labelText: "Data de Nascimento",
@@ -145,6 +151,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
           Padding(
             padding: const EdgeInsets.only(top: 430.0, left: 30, right: 30),
             child: TextFormField(
+              controller: controllerRaca,
               // autofocus: true,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
@@ -161,6 +168,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
           Padding(
             padding: const EdgeInsets.only(top: 500.0, left: 30, right: 30),
             child: TextFormField(
+              controller: controllerPelagem,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Pelagem",
@@ -176,6 +184,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
           Padding(
             padding: const EdgeInsets.only(top: 570.0, left: 30, right: 30),
             child: TextFormField(
+              controller: controllerPeso,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: "Peso",
@@ -206,7 +215,15 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
                   isTrailingIcon: true,
                   color: Colors.cyan,
                   labelColor: Colors.cyan,
-                  onPressed: () {},
+                  onPressed: () {
+                    db.collection("pets").add({
+                      "nome": controllerNome.text,
+                      "data": controllerData.text,
+                      "raca": controllerRaca.text,
+                      "pelagem": controllerPelagem.text,
+                      "peso": controllerPeso.text,
+                    });
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40.0),
