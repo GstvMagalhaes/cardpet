@@ -42,6 +42,7 @@ class _PetPageState extends State<PetPage> {
                 text: "Pet",
               ),
               Tab(
+                //FALTA FAZER TABELA DAS VACINAS
                 icon: Icon(Icons.health_and_safety_rounded),
                 text: "Vacinas",
               )
