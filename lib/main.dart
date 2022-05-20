@@ -17,15 +17,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  //EXEMPLO DE CRIACAO DO BANCO DE DADOS NO CLOUD FIRESTORE
-
-  // var ok = FirebaseFirestore.instance.collection("Produtos");
-  // ok.doc("produto2").set({
-  //   "nome":"teste",
-  //   "preco":"2.0"
-  // }
-  // );
 }
 
 class MyApp extends StatelessWidget {
