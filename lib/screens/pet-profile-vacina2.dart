@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_actions/easy_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:projeto_epsa/screens/loginpage.dart';
 import 'package:projeto_epsa/screens/pet-profile-vermifugos.dart';
 import 'package:projeto_epsa/screens/sign-up-page.dart';
@@ -261,6 +262,25 @@ class _MyPetProfileSignUpState extends State<PetProfileVacina2> {
                 },
               ),
             ),
+          ),
+        ],
+      ),
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        children: [
+          SpeedDialChild(
+            child: Icon(
+              Icons.add_moderator_outlined,
+              size: 28,
+            ),
+            label: 'Vermifugos',
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const PetProfileVermifugo(
+                  title: '',
+                ),
+              ));
+            },
           ),
         ],
       ),
