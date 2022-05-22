@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:projeto_epsa/models/vacinas.dart';
@@ -10,13 +11,17 @@ class PetPage extends StatefulWidget {
   
   // PetPage({Key? key, required this.pet}) : super(key: key);
 
-  late List<Vacinas> vacinas;
+  
 
   @override
   State<PetPage> createState() => _PetPageState();
+  
 }
 
 class _PetPageState extends State<PetPage> {
+  late List<Vacinas> vacinas;
+  var db = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -27,11 +32,8 @@ class _PetPageState extends State<PetPage> {
           title: Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 60.0, top: 10),
-              child: Text( "ok",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 23,
-                ),
+              child: SizedBox(
+                child: Text("Perfil PET"),
               ),
             ),
           ),
@@ -65,63 +67,76 @@ class _PetPageState extends State<PetPage> {
                     ),
                     Column(
                       children: [
+                        // children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 20, bottom: 15),
-                          child: Text(
-                            'Nome: ' '',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.black,
-                              fontSize: 23,
-                            ),
+                          child: StreamBuilder<QuerySnapshot>(
+                            stream: db.collection("pets").snapshots(),
+                            builder: (context, snapshot){
+                              var documentos = snapshot.data!.docs;
+                              return Text(documentos.first['nome'],
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black,
+                                fontSize: 20
+                              ),);
+                            },
                           ),
                         ),
-                        Text(
-                          'Tipo: ' '${"widget.pet.tipo"}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.black,
-                            fontSize: 23,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: StreamBuilder<QuerySnapshot>(
+                            stream: db.collection("pets").snapshots(),
+                            builder: (context, snapshot){
+                              var documentos = snapshot.data!.docs; 
+                              return Text("Raça: ${documentos.first['raca']}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black,
+                                fontSize: 23,
+                              ),
+                            );
+                            },
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0, left: 10),
-                          child: Text(
-                            'Peso: 10kg',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.black,
-                              fontSize: 23,
-                            ),
+                          child: StreamBuilder<QuerySnapshot>(
+                            stream: db.collection("pets").snapshots(),
+                            builder: (context, snapshot){
+                              var documentos = snapshot.data!.docs;
+                              return Text("Peso: ${documentos.first['peso']}Kg",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black,
+                                fontSize: 23,
+                              ),
+                            );
+                            },
+                            
                           ),
                         ),
                       ],
+                      
                     ),
                   ],
                 ),
                 SizedBox(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 210.0),
-                    child: Text(
-                      'Raça: Vira-lata',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        color: Colors.black,
-                        fontSize: 23,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  child: Padding(
                     padding: const EdgeInsets.only(top: 10.0, right: 80),
-                    child: Text(
-                      'Data de Nasc: 10/10/2010',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        color: Colors.black,
-                        fontSize: 23,
-                      ),
+                    child: StreamBuilder<QuerySnapshot>(
+                      stream: db.collection("pets").snapshots(),
+                      builder: (context, snapshot){
+                        var documentos = snapshot.data!.docs;
+                        return Text("Data de Nascimento: ${documentos.first['data']}",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black,
+                          fontSize: 23,
+                        ),
+                      );
+                      },
+                      
                     ),
                   ),
                 ),

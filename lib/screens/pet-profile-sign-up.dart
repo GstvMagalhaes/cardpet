@@ -223,6 +223,14 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
                       "pelagem": controllerPelagem.text,
                       "peso": controllerPeso.text,
                     });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PetSignUp(
+                            title: '',
+                          ),
+                        ),
+                      );
                   },
                 ),
                 Padding(

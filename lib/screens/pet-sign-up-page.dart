@@ -114,8 +114,17 @@ class _MyPetSignUpState extends State<PetSignUp> {
                                             onPressed: (){
                                                db.collection("pets").doc(snapshot.data!.docs[index].id).delete();
                                             },
-                                             
-                                          )
+                                          ),
+                                        ],
+                                      ),
+                                      trailing: Column(
+                                        children: [
+                                          IconButton(
+                                            onPressed:(){
+                                              Navigator.push(context, 
+                                              MaterialPageRoute(
+                                                builder: ((context) => PetPage())));
+                                            } , icon: Icon(Icons.pending))
                                         ],
                                       ),
                                     );
