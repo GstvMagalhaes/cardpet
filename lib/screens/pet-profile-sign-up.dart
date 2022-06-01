@@ -136,7 +136,7 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
             padding: const EdgeInsets.only(top: 360.0, left: 30, right: 30),
             child: TextFormField(
               controller: controllerData,
-              keyboardType: TextInputType.datetime,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Data de Nascimento",
                 labelStyle: TextStyle(
@@ -224,13 +224,13 @@ class _MyPetProfileSignUpState extends State<PetProfileSignUp> {
                       "peso": controllerPeso.text,
                     });
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PetSignUp(
-                            title: '',
-                          ),
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PetSignUp(
+                          title: '',
                         ),
-                      );
+                      ),
+                    );
                   },
                 ),
                 Padding(

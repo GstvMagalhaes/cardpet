@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -8,14 +7,10 @@ import 'pet-profile-vacina.dart';
 import 'pet-sign-up-page.dart';
 
 class PetPage extends StatefulWidget {
-  
   // PetPage({Key? key, required this.pet}) : super(key: key);
-
-  
 
   @override
   State<PetPage> createState() => _PetPageState();
-  
 }
 
 class _PetPageState extends State<PetPage> {
@@ -72,14 +67,18 @@ class _PetPageState extends State<PetPage> {
                           padding: const EdgeInsets.only(left: 20, bottom: 15),
                           child: StreamBuilder<QuerySnapshot>(
                             stream: db.collection("pets").snapshots(),
-                            builder: (context, snapshot){
+                            builder: (context, snapshot) {
+                              if (snapshot.data == null) {
+                                return SizedBox();
+                              }
                               var documentos = snapshot.data!.docs;
-                              return Text(documentos.first['nome'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black,
-                                fontSize: 20
-                              ),);
+                              return Text(
+                                documentos.first['nome'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black,
+                                    fontSize: 20),
+                              );
                             },
                           ),
                         ),
@@ -87,15 +86,19 @@ class _PetPageState extends State<PetPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: StreamBuilder<QuerySnapshot>(
                             stream: db.collection("pets").snapshots(),
-                            builder: (context, snapshot){
-                              var documentos = snapshot.data!.docs; 
-                              return Text("Raça: ${documentos.first['raca']}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black,
-                                fontSize: 23,
-                              ),
-                            );
+                            builder: (context, snapshot) {
+                              if (snapshot.data == null) {
+                                return SizedBox();
+                              }
+                              var documentos = snapshot.data!.docs;
+                              return Text(
+                                "Raça: ${documentos.first['raca']}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                ),
+                              );
                             },
                           ),
                         ),
@@ -103,21 +106,23 @@ class _PetPageState extends State<PetPage> {
                           padding: const EdgeInsets.only(top: 8.0, left: 10),
                           child: StreamBuilder<QuerySnapshot>(
                             stream: db.collection("pets").snapshots(),
-                            builder: (context, snapshot){
+                            builder: (context, snapshot) {
+                              if (snapshot.data == null) {
+                                return SizedBox();
+                              }
                               var documentos = snapshot.data!.docs;
-                              return Text("Peso: ${documentos.first['peso']}Kg",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black,
-                                fontSize: 23,
-                              ),
-                            );
+                              return Text(
+                                "Peso: ${documentos.first['peso']}Kg",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                ),
+                              );
                             },
-                            
                           ),
                         ),
                       ],
-                      
                     ),
                   ],
                 ),
@@ -126,17 +131,20 @@ class _PetPageState extends State<PetPage> {
                     padding: const EdgeInsets.only(top: 10.0, right: 80),
                     child: StreamBuilder<QuerySnapshot>(
                       stream: db.collection("pets").snapshots(),
-                      builder: (context, snapshot){
+                      builder: (context, snapshot) {
+                        if (snapshot.data == null) {
+                          return SizedBox();
+                        }
                         var documentos = snapshot.data!.docs;
-                        return Text("Data de Nascimento: ${documentos.first['data']}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          color: Colors.black,
-                          fontSize: 23,
-                        ),
-                      );
+                        return Text(
+                          "Data de Nascimento: ${documentos.first['data']}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black,
+                            fontSize: 23,
+                          ),
+                        );
                       },
-                      
                     ),
                   ),
                 ),
