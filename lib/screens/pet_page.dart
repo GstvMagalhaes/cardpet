@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:projeto_epsa/models/vacinas.dart';
+import 'package:projeto_epsa/screens/petshops.dart';
 import '../models/pet.dart';
 import 'pet-profile-vacina.dart';
 import 'pet-sign-up-page.dart';
@@ -57,7 +58,8 @@ class _PetPageState extends State<PetPage> {
                       padding: EdgeInsets.all(24),
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: NetworkImage(""),
+                        backgroundImage: NetworkImage(
+                            'https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg'),
                       ),
                     ),
                     Column(
@@ -210,7 +212,16 @@ class _PetPageState extends State<PetPage> {
                 size: 28,
               ),
               label: 'Pet Shops Parceiros',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PetShops(
+                      title: '',
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),

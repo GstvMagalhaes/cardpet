@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:projeto_epsa/models/pet.dart';
+import 'package:projeto_epsa/screens/loginpage.dart';
 import 'package:projeto_epsa/screens/pet_page.dart';
+import 'package:projeto_epsa/screens/petshops.dart';
 
 import 'pet-profile-sign-up.dart';
 
@@ -67,7 +69,16 @@ class _MyPetSignUpState extends State<PetSignUp> {
                       Icons.exit_to_app,
                       size: 25,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(
+                            title: '',
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -194,9 +205,14 @@ class _MyPetSignUpState extends State<PetSignUp> {
                   Icons.store_mall_directory,
                 ),
                 onPressed: () {
-                  // setState(() {
-                  //   _myPage.jumpToPage(3);
-                  // });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PetShops(
+                        title: '',
+                      ),
+                    ),
+                  );
                 },
               )
             ],
