@@ -93,64 +93,67 @@ class _MyPetSignUpState extends State<PetSignUp> {
                   children: [
                     //LISTA DOS PERFIS DOS PETS
                     Visibility(
-                        replacement: Center(
-                          child: Text(
-                            'Clique no + para adicionar um pet',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20,
-                            ),
+                      replacement: Center(
+                        child: Text(
+                          'Clique no + para adicionar um pet',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 20,
                           ),
                         ),
-                        // visible: controller.tabela.isNotEmpty,
-                        child: StreamBuilder<QuerySnapshot>(
-                            stream: db.collection("pets").snapshots(),
-                            builder: (context, snapshot) {
-                              print(snapshot.data);
-                              if (snapshot.data == null) {
-                                return SizedBox();
-                              }
-                              // items = snapshot.data!.docs.map((documentSnapshot) => Pet.fromMap(documentSnapshot.data(), documentSnapshot.id),).toList();
-                              // return Container();
-                              return ListView.builder(
-                                itemCount: snapshot.data!.docs.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    title: Text(
-                                        snapshot.data!.docs[index]['nome']),
-                                    subtitle: Text(
-                                        snapshot.data!.docs[index]['raca']),
-                                    leading: Column(
-                                      children: [
-                                        IconButton(
-                                          icon: Icon(Icons.delete_forever),
-                                          onPressed: () {
-                                            db
-                                                .collection("pets")
-                                                .doc(snapshot
-                                                    .data!.docs[index].id)
-                                                .delete();
-                                          },
-                                        ),
-                                      ],
+                      ),
+                      // visible: controller.tabela.isNotEmpty,
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: db.collection("pets").snapshots(),
+                        builder: (context, snapshot) {
+                          print(snapshot.data);
+                          if (snapshot.data == null) {
+                            return SizedBox();
+                          }
+                          // items = snapshot.data!.docs.map((documentSnapshot) => Pet.fromMap(documentSnapshot.data(), documentSnapshot.id),).toList();
+                          // return Container();
+                          return ListView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(snapshot.data!.docs[index]['nome']),
+                                subtitle:
+                                    Text(snapshot.data!.docs[index]['raca']),
+                                leading: Column(
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(Icons.delete_forever),
+                                      onPressed: () {
+                                        db
+                                            .collection("pets")
+                                            .doc(snapshot.data!.docs[index].id)
+                                            .delete();
+                                      },
                                     ),
-                                    trailing: Column(
-                                      children: [
-                                        IconButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: ((context) =>
-                                                          PetPage())));
-                                            },
-                                            icon: Icon(Icons.pending))
-                                      ],
-                                    ),
-                                  );
-                                },
+                                  ],
+                                ),
+                                trailing: Column(
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: ((context) => PetPage(
+                                                  data: snapshot
+                                                      .data!.docs[index].id)),
+                                            ),
+                                          );
+                                        },
+                                        icon: Icon(Icons.pending))
+                                  ],
+                                ),
                               );
-                            })),
+                            },
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
                 decoration: BoxDecoration(

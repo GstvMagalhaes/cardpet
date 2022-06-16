@@ -7,7 +7,7 @@ class Pet {
   late String nome;
   late String dataNascimento;
   late String raca;
-  late String peso; 
+  late String peso;
 
   Pet(
     this.id,
@@ -17,7 +17,7 @@ class Pet {
     this.peso,
   );
 
-  Pet.map(dynamic obj){
+  Pet.map(dynamic obj) {
     this.id = obj['id'];
     this.nome = obj['nome'];
     this.dataNascimento = obj['dataNascimento'];
@@ -25,22 +25,20 @@ class Pet {
     this.peso = obj['peso'];
   }
 
-
-
-  Map<String, dynamic> toMap(){
-    var map = new Map<String, dynamic> ();
-    if(id != null){
+  Map<String, dynamic> toMap() {
+    var map = new Map<String, dynamic>();
+    if (id != null) {
       map['id'] = id;
     }
     map['nome'] = nome;
     map['dataNascimento'] = dataNascimento;
     map['raca'] = raca;
-    map['peso'] =  peso;
+    map['peso'] = peso;
 
     return map;
   }
-  
-  Pet.fromMap(Map<String, dynamic> map, String id){
+
+  Pet.fromMap(Map<String, dynamic> map, String id) {
     this.id = id;
     this.nome = map['nome'];
     // this.dataNascimento = map['dataNascimento'];

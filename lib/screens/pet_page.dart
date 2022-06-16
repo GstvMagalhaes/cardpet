@@ -13,6 +13,8 @@ import 'pet-sign-up-page.dart';
 class PetPage extends StatefulWidget {
   // PetPage({Key? key, required this.pet}) : super(key: key);
 
+  final dynamic data;
+  const PetPage({Key? key, this.data}) : super(key: key);
   @override
   State<PetPage> createState() => _PetPageState();
 }
@@ -20,6 +22,10 @@ class PetPage extends StatefulWidget {
 class _PetPageState extends State<PetPage> {
   late List<Vacinas> vacinas;
   var db = FirebaseFirestore.instance;
+
+  buscarDadosPet() async {
+    return await (await db.collection("pets").doc(widget.data).get()).data();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +54,23 @@ class _PetPageState extends State<PetPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 30, left: 100),
-            child: CircleAvatar(
-              radius: 100,
-              backgroundImage: NetworkImage(
-                  'https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg'),
-            ),
+          FutureBuilder<dynamic>(
+            future: buscarDadosPet(),
+            builder: (context, snapshot) {
+              print(snapshot);
+              if (snapshot.data == null) {
+                return SizedBox();
+              }
+              var item = snapshot.data;
+              return Padding(
+                padding: const EdgeInsets.only(top: 30, left: 100),
+                child: CircleAvatar(
+                  radius: 100,
+                  backgroundImage: NetworkImage(
+                      'https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg'),
+                ),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(left: 40),
@@ -63,15 +79,16 @@ class _PetPageState extends State<PetPage> {
                 padding: const EdgeInsets.only(bottom: 100),
                 child: Row(
                   children: [
-                    StreamBuilder<QuerySnapshot>(
-                      stream: db.collection("pets").snapshots(),
+                    FutureBuilder<dynamic>(
+                      future: buscarDadosPet(),
                       builder: (context, snapshot) {
+                        print(snapshot);
                         if (snapshot.data == null) {
                           return SizedBox();
                         }
-                        var documentos = snapshot.data!.docs;
+                        var item = snapshot.data;
                         return Text(
-                          "Nome: ${documentos.first['nome']}",
+                          "Nome: ${item['nome']}",
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
                               color: Colors.black,
@@ -82,15 +99,15 @@ class _PetPageState extends State<PetPage> {
                     SizedBox(
                       width: 50,
                     ),
-                    StreamBuilder<QuerySnapshot>(
-                      stream: db.collection("pets").snapshots(),
+                    FutureBuilder<dynamic>(
+                      future: buscarDadosPet(),
                       builder: (context, snapshot) {
                         if (snapshot.data == null) {
                           return SizedBox();
                         }
-                        var documentos = snapshot.data!.docs;
+                        var item = snapshot.data;
                         return Text(
-                          "Raça: ${documentos.first['raca']}",
+                          "Raça: ${item['raca']}",
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             color: Colors.black,
@@ -109,15 +126,15 @@ class _PetPageState extends State<PetPage> {
             child: Center(
               child: Row(
                 children: [
-                  StreamBuilder<QuerySnapshot>(
-                    stream: db.collection("pets").snapshots(),
+                  FutureBuilder<dynamic>(
+                    future: buscarDadosPet(),
                     builder: (context, snapshot) {
                       if (snapshot.data == null) {
                         return SizedBox();
                       }
-                      var documentos = snapshot.data!.docs;
+                      var item = snapshot.data;
                       return Text(
-                        "Peso: ${documentos.first['peso']} kg",
+                        "Peso: ${item['peso']} kg",
                         style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
@@ -129,15 +146,15 @@ class _PetPageState extends State<PetPage> {
                   SizedBox(
                     width: 35,
                   ),
-                  StreamBuilder<QuerySnapshot>(
-                    stream: db.collection("pets").snapshots(),
+                  FutureBuilder<dynamic>(
+                    future: buscarDadosPet(),
                     builder: (context, snapshot) {
                       if (snapshot.data == null) {
                         return SizedBox();
                       }
-                      var documentos = snapshot.data!.docs;
+                      var item = snapshot.data;
                       return Text(
-                        "Data: ${documentos.first['data']}",
+                        "Data: ${item['data']}",
                         style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
@@ -153,10 +170,11 @@ class _PetPageState extends State<PetPage> {
           Padding(
             padding: const EdgeInsets.only(top: 400),
             child: Center(
-                child: Icon(
-              Icons.pets,
-              size: 80,
-            )),
+              child: Icon(
+                Icons.pets,
+                size: 80,
+              ),
+            ),
           )
         ],
       ),
